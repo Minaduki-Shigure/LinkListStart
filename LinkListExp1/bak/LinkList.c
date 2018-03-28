@@ -27,20 +27,6 @@ LNode *ListInit(int length)
 	return head;
 }
 
-int ListLength(LNode *ListHead)
-{
-	LNode *p = ListHead;
-	int i = 0;
-	while (1)
-	{
-		p = p->next;
-		if (p == NULL)
-			break;
-		i++;
-	}
-	return i;
-}
-
 void ElemInsert(LNode *ListHead, int location, ElemType input)
 {
 	LNode *p = NewNode();
@@ -75,7 +61,6 @@ ElemType ElemDelete(LNode *ListHead, int location)
 	output = temp->data;
 	free(temp);
 	temp1->next = swap;
-	return output;
 }
 
 void ListPrint(LNode *ListHead)
@@ -91,57 +76,5 @@ void ListPrint(LNode *ListHead)
 		printf("%3d\t", out);
 	}
 	printf("\n");
-	return;
-}
-
-LNode *FindFirstCommonNode(LNode *head1, LNode *head2)
-{
-	int length1 = 0, length2 = 0, temp = 0;
-	int i = 0;
-	LNode *p1 = NULL, *p2 = NULL, *p3 = NULL, *p4 = NULL;
-	length1 = ListLength(head1);
-	length2 = ListLength(head2);
-	temp = length1 - length2;
-	if (temp >= 0)
-	{
-		p1 = head1;
-		p2 = head2;
-	}
-	else
-	{
-		p1 = head2;
-		p2 = head1;
-		temp = -temp;
-	}
-	p3 = p1;
-	p4 = p2;
-	for (i = 0; i < temp; i++)
-		p3 = p3->next;
-	while (1)
-	{
-		if (p3 == p4)
-			break;
-		p3 = p3->next;
-		p4 = p4->next;
-		if (p3 == NULL || p4 == NULL)
-			return NULL;
-	}
-	return p3;
-}
-
-void ListInvert(LNode *head)
-{
-	if (head->next == NULL)
-		return;
-	LNode *p = NULL, *p1 = NULL;
-	p = head->next;
-	head->next = NULL;
-	while (p)
-	{
-		p1 = p;
-		p = p->next;
-		p1->next = head->next;
-		head->next = p1;
-	}
 	return;
 }
